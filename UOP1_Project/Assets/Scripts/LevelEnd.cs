@@ -1,17 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+/// <summary>
+/// This class detecs when the level(Location) ends
+/// </summary>
 
 public class LevelEnd : MonoBehaviour
 {
-    public GameEvent onLevelEnd;
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            onLevelEnd.Raise();
-        }
-    }
+	public LoadEvent onLevelEnd;
+	public GameScene[] locationsToLoad;
+	public bool showLoadScreen;
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			onLevelEnd.Raise(locationsToLoad, showLoadScreen);
+		}
+	}
 }
